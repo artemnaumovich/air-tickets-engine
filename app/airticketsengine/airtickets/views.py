@@ -4,6 +4,7 @@ from django.views.generic import View
 
 from .utils import *
 from .models import *
+from .forms import *
 
 
 def airlines_list(request):
@@ -13,6 +14,21 @@ def airlines_list(request):
 class AirlineDetail(ObjectDetailMixin, View):
     model = Airline
     template = 'airtickets/airline_detail.html'
+
+class AirlineCreate(ObjectCreateMixin, View):
+    model_form = AirlineForm
+    template = 'airtickets/airline_create_form.html'
+
+class AirlineUpdate(ObjectUpdateMixin, View):
+    model = Airline
+    model_form = AirlineForm
+    template = 'airtickets/airline_update_form.html'
+
+class AirlineDelete(ObjectDeleteMixin, View):
+    model = Airline
+    template = 'airtickets/airline_delete_form.html'
+    redirect_url = 'airlines_list_url'
+
 
 
 
