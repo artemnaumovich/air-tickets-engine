@@ -1,0 +1,10 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    {{ city.name }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ city.name }}</h1>
+    <p>Country: {{ city.country.name }}</p>
+{% endblock %}

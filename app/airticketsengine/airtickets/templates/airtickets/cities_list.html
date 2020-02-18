@@ -1,0 +1,12 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    Cities title - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Cities:</h1>
+    {% for city in cities %}
+        {% include 'airtickets/includes/city_card_template.html' %}
+    {% endfor %}
+{% endblock %}

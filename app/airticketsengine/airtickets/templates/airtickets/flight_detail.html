@@ -1,0 +1,15 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    {{ flight.name }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ flight.name }}</h1>
+    <p>From: {{ flight.route.airportFrom.city.country.name }}, {{ flight.route.airportFrom.city.name }}, {{ flight.route.airportFrom.name }}</p>
+    <p>To: {{ flight.route.airportTo.city.country.name }}, {{ flight.route.airportTo.city.name }}, {{ flight.route.airportTo.name }}</p>
+    <p>Airplane: {{ flight.airplane.model }}</p>
+    <p>Departure date time: {{ flight.departureDateTime }}</p>
+    <p>Price: {{ flight.price }}</p>
+    <p>Duration: {{ flight.duration }}</p>
+{% endblock %}

@@ -1,0 +1,22 @@
+<div class="card mb-4">
+    <div class="card-header">
+        <h5> {{ flight.name }} </h5>
+    </div>
+    <div class="card-body">
+        <div class="text-muted">
+            From: <a href="#">{{ flight.route.airportFrom.city.name }}</a>
+        </div>
+        <div class="text-muted">
+            To: <a href="#"> {{ flight.route.airportTo.city.name }} </a>
+        </div>
+        <div class="text-muted">
+            Departure date time: {{ flight.departureDateTime }}
+        </div>
+        <div class="text-muted">
+            Price: {{ flight.price }}
+        </div>
+
+
+        <a href="{{ flight.get_absolute_url }}" class="btn btn-light">Read</a>
+    </div>
+</div>

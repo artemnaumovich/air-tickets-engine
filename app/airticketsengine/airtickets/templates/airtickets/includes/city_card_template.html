@@ -1,0 +1,12 @@
+<div class="card mb-4">
+    <div class="card-header">
+        <h5> {{ city.name }} </h5>
+    </div>
+    <div class="card-body">
+        <div class="text-muted">
+            Country: <a href="#">{{ city.country.name }}</a>
+        </div>
+
+        <a href="{{ city.get_absolute_url }}" class="btn btn-light">Read</a>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="card mb-4">
+    <div class="card-header">
+        <h5> {{ airport.name }} </h5>
+    </div>
+    <div class="card-body">
+        <div class="text-muted">
+            City: <a href="#">{{ airport.city.name }}</a>
+        </div>
+        <div class="text-muted">
+            Phone: {{ airport.phone }}
+        </div>
+
+        <a href="{{ airport.get_absolute_url }}" class="btn btn-light">Read</a>
+    </div>
+</div>

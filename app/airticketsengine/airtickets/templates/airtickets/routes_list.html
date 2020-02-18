@@ -1,0 +1,12 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    Routes title - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Routes:</h1>
+    {% for route in routes %}
+        {% include 'airtickets/includes/route_card_template.html' %}
+    {% endfor %}
+{% endblock %}

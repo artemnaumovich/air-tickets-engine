@@ -1,0 +1,12 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    Airlines title
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Airlines:</h1>
+    {% for airline in airlines %}
+        {% include 'airtickets/includes/airline_card_template.html' %}
+    {% endfor %}
+{% endblock %}

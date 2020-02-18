@@ -1,0 +1,12 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    Countries title - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Countries:</h1>
+    {% for country in countries %}
+        {% include 'airtickets/includes/country_card_template.html' %}
+    {% endfor %}
+{% endblock %}

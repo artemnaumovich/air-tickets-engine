@@ -1,0 +1,11 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    {{ route.name }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">Route: {{ route.id }}</h1>
+    <p>From: {{ route.airportFrom.city.country.name }}, {{ route.airportFrom.city.name }}, {{ route.airportFrom.name }}</p>
+    <p>To: {{ route.airportTo.city.country.name }}, {{ route.airportTo.city.name }}, {{ route.airportTo.name }}</p>
+{% endblock %}
