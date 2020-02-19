@@ -45,6 +45,17 @@ class Airport(models.Model):
     def get_absolute_url(self):
         return reverse('airport_detail_url', kwargs={'slug': self.slug})
 
+    def get_update_url(self):
+        return reverse('airport_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('airport_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 

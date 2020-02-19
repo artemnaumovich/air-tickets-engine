@@ -40,6 +40,21 @@ class AirportDetail(ObjectDetailMixin, View):
     model = Airport
     template = 'airtickets/airport_detail.html'
 
+class AirportCreate(ObjectCreateMixin, View):
+    model_form = AirportForm
+    template = 'airtickets/airport_create_form.html'
+
+class AirportUpdate(ObjectUpdateMixin, View):
+    model = Airport
+    model_form = AirportForm
+    template = 'airtickets/airport_update_form.html'
+
+class AirportDelete(ObjectDeleteMixin, View):
+    model = Airport
+    template = 'airtickets/airport_delete_form.html'
+    redirect_url = 'airports_list_url'
+
+
 
 
 def flights_list(request):

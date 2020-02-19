@@ -11,7 +11,10 @@ urlpatterns = [
     path('airline/<str:slug>/delete/', AirlineDelete.as_view(), name='airline_delete_url'),
 
     path('airports/', airports_list, name='airports_list_url'),
+    path('airport/create/', AirportCreate.as_view(), name='airport_create_url'),
     path('airport/<str:slug>/', AirportDetail.as_view(), name='airport_detail_url'),
+    path('airport/<str:slug>/update/', AirportUpdate.as_view(), name='airport_update_url'),
+    path('airport/<str:slug>/delete/', AirportDelete.as_view(), name='airport_delete_url'),
 
     path('flights/', flights_list, name='flights_list_url'),
     path('flight/<str:slug>/', FlightDetail.as_view(), name='flight_detail_url'),
