@@ -19,6 +19,17 @@ class Country(models.Model):
     def get_absolute_url(self):
         return reverse('country_detail_url', kwargs={'slug': self.slug})
 
+    def get_update_url(self):
+        return reverse('country_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('country_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
@@ -30,6 +41,17 @@ class City(models.Model):
 
     def get_absolute_url(self):
         return reverse('city_detail_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('city_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('city_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

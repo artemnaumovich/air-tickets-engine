@@ -26,8 +26,15 @@ urlpatterns = [
     path('airplane/<str:slug>/', AirplaneDetail.as_view(), name='airplane_detail_url'),
 
     path('countries/', countries_list, name='countries_list_url'),
+    path('country/create/', CountryCreate.as_view(), name='country_create_url'),
     path('country/<str:slug>/', CountryDetail.as_view(), name='country_detail_url'),
+    path('country/<str:slug>/update/', CountryUpdate.as_view(), name='country_update_url'),
+    path('country/<str:slug>/delete/', CountryDelete.as_view(), name='country_delete_url'),
 
     path('cities/', cities_list, name='cities_list_url'),
-    path('city/<str:slug>/', CityDetail.as_view(), name='city_detail_url')
+    path('city/create/', CityCreate.as_view(), name='city_create_url'),
+    path('city/<str:slug>/', CityDetail.as_view(), name='city_detail_url'),
+    path('city/<str:slug>/update/', CityUpdate.as_view(), name='city_update_url'),
+    path('city/<str:slug>/delete/', CityDelete.as_view(), name='city_delete_url')
+
 ]

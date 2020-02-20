@@ -1,0 +1,19 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    Delete Country "{{ country.name|title }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <form action="{{ country.get_delete_url }}" method="post">
+        {% csrf_token %}
+
+        <h3> Are you sure you want to delete <b>"{{ country.name|title }}"</b> country? </h3>
+        <a href="{{ country.get_absolute_url }}">Cancel</a>
+        <button type="submit" name="button" class="btn btn-danger">Delete</button>
+
+    </form>
+
+
+{% endblock %}

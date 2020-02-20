@@ -50,3 +50,28 @@ class AirportForm(forms.ModelForm):
             raise ValidationError('Phone number must starts with "+" and after that consists only symbhols 0-9')
 
         return new_phone
+
+
+class CountryForm(forms.ModelForm):
+
+    class Meta:
+        model = Country
+        fields = ['name', 'slug']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class CityForm(forms.ModelForm):
+
+    class Meta:
+        model = City
+        fields = ['name', 'country', 'slug']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.Select(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }

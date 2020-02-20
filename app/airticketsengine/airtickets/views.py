@@ -96,6 +96,20 @@ class CountryDetail(ObjectDetailMixin, View):
     model = Country
     template = 'airtickets/country_detail.html'
 
+class CountryCreate(ObjectCreateMixin, View):
+    model_form = CountryForm
+    template = 'airtickets/country_create_form.html'
+
+class CountryUpdate(ObjectUpdateMixin, View):
+    model = Country
+    model_form = CountryForm
+    template = 'airtickets/country_update_form.html'
+
+class CountryDelete(ObjectDeleteMixin, View):
+    model = Country
+    template = 'airtickets/country_delete_form.html'
+    redirect_url = 'countries_list_url'
+
 
 
 def cities_list(request):
@@ -105,3 +119,17 @@ def cities_list(request):
 class CityDetail(ObjectDetailMixin, View):
     model = City
     template = 'airtickets/city_detail.html'
+
+class CityCreate(ObjectCreateMixin, View):
+    model_form = CityForm
+    template = 'airtickets/city_create_form.html'
+
+class CityUpdate(ObjectUpdateMixin, View):
+    model = City
+    model_form = CityForm
+    template = 'airtickets/city_update_form.html'
+
+class CityDelete(ObjectDeleteMixin, View):
+    model = City
+    template = 'airtickets/city_delete_form.html'
+    redirect_url = 'cities_list_url'
