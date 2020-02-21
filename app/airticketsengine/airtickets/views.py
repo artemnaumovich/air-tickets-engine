@@ -76,6 +76,21 @@ class RouteDetail(ObjectDetailMixin, View):
     model = Route
     template = 'airtickets/route_detail.html'
 
+class RouteCreate(ObjectCreateMixin, View):
+    model_form = RouteForm
+    template = 'airtickets/route_create_form.html'
+
+class RouteUpdate(ObjectUpdateMixin, View):
+    model = Route
+    model_form = RouteForm
+    template = 'airtickets/route_update_form.html'
+
+class RouteDelete(ObjectDeleteMixin, View):
+    model = Route
+    template = 'airtickets/route_delete_form.html'
+    redirect_url = 'routes_list_url'
+
+
 
 
 def airplanes_list(request):

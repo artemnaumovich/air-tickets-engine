@@ -20,7 +20,10 @@ urlpatterns = [
     path('flight/<str:slug>/', FlightDetail.as_view(), name='flight_detail_url'),
 
     path('routes/', routes_list, name='routes_list_url'),
+    path('route/create/', RouteCreate.as_view(), name='route_create_url'),
     path('route/<str:slug>/', RouteDetail.as_view(), name='route_detail_url'),
+    path('route/<str:slug>/update/', RouteUpdate.as_view(), name='route_update_url'),
+    path('route/<str:slug>/delete/', RouteDelete.as_view(), name='route_delete_url'),
 
     path('airplanes/', airplanes_list, name='airplanes_list_url'),
     path('airplane/<str:slug>/', AirplaneDetail.as_view(), name='airplane_detail_url'),

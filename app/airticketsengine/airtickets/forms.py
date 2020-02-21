@@ -75,3 +75,18 @@ class CityForm(forms.ModelForm):
             'country': forms.Select(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'})
         }
+
+
+
+class RouteForm(forms.ModelForm):
+
+    class Meta:
+        model = Route
+        fields = ['name', 'airportFrom', 'airportTo', 'slug']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'airportFrom': forms.Select(attrs={'class': 'form-control'}),
+            'airportTo': forms.Select(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }

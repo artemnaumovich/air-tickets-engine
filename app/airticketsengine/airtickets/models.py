@@ -107,7 +107,7 @@ class Airline(models.Model):
 
 
 class Airplane(models.Model):
-    model = models.CharField(max_length=50, db_index=True)
+    name = models.CharField(max_length=100, db_index=True, unique=True)
     airline = models.ForeignKey(Airline, on_delete=models.CASCADE, related_name='airplanes')
     capacity = models.IntegerField()
     numberRows = models.IntegerField()
@@ -121,12 +121,25 @@ class Airplane(models.Model):
 
 
 class Route(models.Model):
+    name = models.CharField(max_length=100, db_index=True, unique=True)
     airportFrom = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='routesFrom')
     airportTo = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='routesTo')
     slug = models.SlugField(max_length=100, unique=True, blank=True)
 
+
     def get_absolute_url(self):
         return reverse('route_detail_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('route_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('route_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return '{}-{}'.format(self.airportFrom, self.airportTo)
