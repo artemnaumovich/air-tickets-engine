@@ -1,12 +1,12 @@
 {% extends 'airtickets/base_airtickets.html' %}
 
 {% block title %}
-    Create City - {{ block.super }}
+    Create {{ type_obj }} - {{ block.super }}
 {% endblock %}
 
 {% block content %}
 
-    <form class="" action="{% url 'city_create_url' %}" method="post">
+    <form class="" action="{{ obj.get_create_url }}" method="post">
         {% csrf_token %}
 
         {% for field in form %}
@@ -20,7 +20,7 @@
                 {{ field }}
             </div>
         {% endfor %}
-        <button type="submit" name="button" class="btn btn-primary">Create City</button>
+        <button type="submit" name="button" class="btn btn-primary">Create {{type_obj|title}}</button>
 
 
 

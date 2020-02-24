@@ -90,3 +90,34 @@ class RouteForm(forms.ModelForm):
             'airportTo': forms.Select(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'})
         }
+
+
+class FlightForm(forms.ModelForm):
+
+    class Meta:
+        model = Flight
+        fields = ['name', 'airplane', 'route', 'departureDateTime', 'price', 'duration', 'slug']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'airplane': forms.Select(attrs={'class': 'form-control'}),
+            'route': forms.Select(attrs={'class': 'form-control'}),
+            'departureDateTime': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'duration': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+class AirplaneForm(forms.ModelForm):
+
+    class Meta:
+        model = Airplane
+        fields = ['name', 'airline', 'capacity', 'numberRows', 'slug']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'airline': forms.Select(attrs={'class': 'form-control'}),
+            'capacity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'numberRows': forms.NumberInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }

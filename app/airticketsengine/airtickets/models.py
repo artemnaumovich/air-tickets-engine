@@ -19,6 +19,9 @@ class Country(models.Model):
     def get_absolute_url(self):
         return reverse('country_detail_url', kwargs={'slug': self.slug})
 
+    def get_create_url(self):
+        return reverse('country_create_url', kwargs={'slug': self.slug})
+
     def get_update_url(self):
         return reverse('country_update_url', kwargs={'slug': self.slug})
 
@@ -41,6 +44,9 @@ class City(models.Model):
 
     def get_absolute_url(self):
         return reverse('city_detail_url', kwargs={'slug': self.slug})
+
+    def get_create_url(self):
+        return reverse('city_create_url', kwargs={'slug': self.slug})
 
     def get_update_url(self):
         return reverse('city_update_url', kwargs={'slug': self.slug})
@@ -67,6 +73,9 @@ class Airport(models.Model):
     def get_absolute_url(self):
         return reverse('airport_detail_url', kwargs={'slug': self.slug})
 
+    def get_create_url(self):
+        return reverse('airport_create_url', kwargs={'slug': self.slug})
+
     def get_update_url(self):
         return reverse('airport_update_url', kwargs={'slug': self.slug})
 
@@ -90,6 +99,9 @@ class Airline(models.Model):
 
     def get_absolute_url(self):
         return reverse('airline_detail_url', kwargs={'slug': self.slug})
+
+    def get_create_url(self):
+        return reverse('airline_create_url', kwargs={'slug': self.slug})
 
     def get_update_url(self):
         return reverse('airline_update_url', kwargs={'slug': self.slug})
@@ -116,8 +128,22 @@ class Airplane(models.Model):
     def get_absolute_url(self):
         return reverse('airplane_detail_url', kwargs={'slug': self.slug})
 
+    def get_create_url(self):
+        return reverse('airplane_create_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('airplane_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('airplane_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return self.model
+        return self.name
 
 
 class Route(models.Model):
@@ -129,6 +155,9 @@ class Route(models.Model):
 
     def get_absolute_url(self):
         return reverse('route_detail_url', kwargs={'slug': self.slug})
+
+    def get_create_url(self):
+        return reverse('route_create_url', kwargs={'slug': self.slug})
 
     def get_update_url(self):
         return reverse('route_update_url', kwargs={'slug': self.slug})
@@ -156,6 +185,20 @@ class Flight(models.Model):
 
     def get_absolute_url(self):
         return reverse('flight_detail_url', kwargs={'slug': self.slug})
+
+    def get_create_url(self):
+        return reverse('flight_create_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('flight_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('flight_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return '{}:{}'.format(self.route, self.departureDateTime)

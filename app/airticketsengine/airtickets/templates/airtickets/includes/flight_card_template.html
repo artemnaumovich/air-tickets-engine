@@ -4,10 +4,10 @@
     </div>
     <div class="card-body">
         <div class="text-muted">
-            From: <a href="#">{{ flight.route.airportFrom.city.name }}</a>
+            From: <a href="{{ flight.route.airportFrom.city.get_absolute_url }}">{{ flight.route.airportFrom.city.name }}</a>
         </div>
         <div class="text-muted">
-            To: <a href="#"> {{ flight.route.airportTo.city.name }} </a>
+            To: <a href="{{ flight.route.airportTo.city.get_absolute_url }}"> {{ flight.route.airportTo.city.name }} </a>
         </div>
         <div class="text-muted">
             Departure date time: {{ flight.departureDateTime }}

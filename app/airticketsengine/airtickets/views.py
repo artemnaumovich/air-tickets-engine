@@ -6,6 +6,8 @@ from .utils import *
 from .models import *
 from .forms import *
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 def airlines_list(request):
     airlines = Airline.objects.all()
@@ -15,19 +17,20 @@ class AirlineDetail(ObjectDetailMixin, View):
     model = Airline
     template = 'airtickets/airline_detail.html'
 
-class AirlineCreate(ObjectCreateMixin, View):
-    model_form = AirlineForm
-    template = 'airtickets/airline_create_form.html'
-
-class AirlineUpdate(ObjectUpdateMixin, View):
+class AirlineCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = Airline
     model_form = AirlineForm
-    template = 'airtickets/airline_update_form.html'
+    raise_exception = True
 
-class AirlineDelete(ObjectDeleteMixin, View):
+class AirlineUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Airline
-    template = 'airtickets/airline_delete_form.html'
+    model_form = AirlineForm
+    raise_exception = True
+
+class AirlineDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Airline
     redirect_url = 'airlines_list_url'
+    raise_exception = True
 
 
 
@@ -40,19 +43,20 @@ class AirportDetail(ObjectDetailMixin, View):
     model = Airport
     template = 'airtickets/airport_detail.html'
 
-class AirportCreate(ObjectCreateMixin, View):
-    model_form = AirportForm
-    template = 'airtickets/airport_create_form.html'
-
-class AirportUpdate(ObjectUpdateMixin, View):
+class AirportCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = Airport
     model_form = AirportForm
-    template = 'airtickets/airport_update_form.html'
+    raise_exception = True
 
-class AirportDelete(ObjectDeleteMixin, View):
+class AirportUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Airport
-    template = 'airtickets/airport_delete_form.html'
+    model_form = AirportForm
+    raise_exception = True
+
+class AirportDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Airport
     redirect_url = 'airports_list_url'
+    raise_exception = True
 
 
 
@@ -65,6 +69,21 @@ class FlightDetail(ObjectDetailMixin, View):
     model = Flight
     template = 'airtickets/flight_detail.html'
 
+class FlightCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = Flight
+    model_form = FlightForm
+    raise_exception = True
+
+class FlightUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    model = Flight
+    model_form = FlightForm
+    raise_exception = True
+
+class FlightDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Flight
+    redirect_url = 'flights_list_url'
+    raise_exception = True
+
 
 
 
@@ -76,19 +95,20 @@ class RouteDetail(ObjectDetailMixin, View):
     model = Route
     template = 'airtickets/route_detail.html'
 
-class RouteCreate(ObjectCreateMixin, View):
-    model_form = RouteForm
-    template = 'airtickets/route_create_form.html'
-
-class RouteUpdate(ObjectUpdateMixin, View):
+class RouteCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = Route
     model_form = RouteForm
-    template = 'airtickets/route_update_form.html'
+    raise_exception = True
 
-class RouteDelete(ObjectDeleteMixin, View):
+class RouteUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Route
-    template = 'airtickets/route_delete_form.html'
+    model_form = RouteForm
+    raise_exception = True
+
+class RouteDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Route
     redirect_url = 'routes_list_url'
+    raise_exception = True
 
 
 
@@ -101,6 +121,22 @@ class AirplaneDetail(ObjectDetailMixin, View):
     model = Airplane
     template = 'airtickets/airplane_detail.html'
 
+class AirplaneCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = Airplane
+    model_form = AirplaneForm
+    raise_exception = True
+
+class AirplaneUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    model = Airplane
+    model_form = AirplaneForm
+    raise_exception = True
+
+class AirplaneDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Airplane
+    redirect_url = 'airplanes_list_url'
+    raise_exception = True
+
+
 
 
 def countries_list(request):
@@ -111,19 +147,20 @@ class CountryDetail(ObjectDetailMixin, View):
     model = Country
     template = 'airtickets/country_detail.html'
 
-class CountryCreate(ObjectCreateMixin, View):
-    model_form = CountryForm
-    template = 'airtickets/country_create_form.html'
-
-class CountryUpdate(ObjectUpdateMixin, View):
+class CountryCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = Country
     model_form = CountryForm
-    template = 'airtickets/country_update_form.html'
+    raise_exception = True
 
-class CountryDelete(ObjectDeleteMixin, View):
+class CountryUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Country
-    template = 'airtickets/country_delete_form.html'
+    model_form = CountryForm
+    raise_exception = True
+
+class CountryDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Country
     redirect_url = 'countries_list_url'
+    raise_exception = True
 
 
 
@@ -135,16 +172,17 @@ class CityDetail(ObjectDetailMixin, View):
     model = City
     template = 'airtickets/city_detail.html'
 
-class CityCreate(ObjectCreateMixin, View):
-    model_form = CityForm
-    template = 'airtickets/city_create_form.html'
-
-class CityUpdate(ObjectUpdateMixin, View):
+class CityCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = City
     model_form = CityForm
-    template = 'airtickets/city_update_form.html'
+    raise_exception = True
 
-class CityDelete(ObjectDeleteMixin, View):
+class CityUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = City
-    template = 'airtickets/city_delete_form.html'
+    model_form = CityForm
+    raise_exception = True
+
+class CityDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = City
     redirect_url = 'cities_list_url'
+    raise_exception = True

@@ -4,10 +4,10 @@
     </div>
     <div class="card-body">
         <div class="text-muted">
-            Country: <a href="#">{{ airline.country.name }}</a>
+            Country: <a href="{{ airline.country.get_absolute_url }}">{{ airline.country.name }}</a>
         </div>
         <div class="text-muted">
-            Appearance year: <a href="#">{{ airline.appearanceYear }}</a>
+            Appearance year: {{ airline.appearanceYear }}
         </div>
 
         <a href="{{ airline.get_absolute_url }}" class="btn btn-light">Read</a>

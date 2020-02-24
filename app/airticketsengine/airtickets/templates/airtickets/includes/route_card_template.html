@@ -4,10 +4,10 @@
     </div>
     <div class="card-body">
         <div class="text-muted">
-            From: <a href="#">{{ route.airportFrom.city.name }}</a>
+            From: <a href="{{ route.airportFrom.city.get_absolute_url }}">{{ route.airportFrom.city.name }}</a>
         </div>
         <div class="text-muted">
-            To: <a href="#"> {{ route.airportTo.city.name }} </a>
+            To: <a href="{{ route.airportFrom.city.get_absolute_url }}"> {{ route.airportTo.city.name }} </a>
         </div>
 
         <a href="{{ route.get_absolute_url }}" class="btn btn-light">Read</a>

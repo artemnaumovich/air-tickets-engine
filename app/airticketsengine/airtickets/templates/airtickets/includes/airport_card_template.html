@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <div class="text-muted">
-            City: <a href="#">{{ airport.city.name }}</a>
+            City: <a href="{{ airport.city.get_absolute_url }}">{{ airport.city.name }}</a>
         </div>
         <div class="text-muted">
             Phone: {{ airport.phone }}

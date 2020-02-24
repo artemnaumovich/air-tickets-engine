@@ -4,7 +4,7 @@
     </div>
     <div class="card-body">
         <div class="text-muted">
-            Country: <a href="#">{{ city.country.name }}</a>
+            Country: <a href="{{ city.country.get_absolute_url }}">{{ city.country.name }}</a>
         </div>
 
         <a href="{{ city.get_absolute_url }}" class="btn btn-light">Read</a>
