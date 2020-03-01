@@ -1,8 +1,13 @@
-<div class="card mb-4">
+<div class="card mb-4"
+     style="background: #142b47;
+            font-size: 18px;
+            color: #f2f2f2;
+            font-family: sans-serif;
+            letter-spacing:0.5px;">
     <div class="card-header">
-        <h5> {{ airline.name }} </h5>
+        <p style="font-size: 25px;"> {{ airline.name }} </p>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="background: #fefafa;">
         <div class="text-muted">
             Country: <a href="{{ airline.country.get_absolute_url }}">{{ airline.country.name }}</a>
         </div>
@@ -10,6 +15,11 @@
             Appearance year: {{ airline.appearanceYear }}
         </div>
 
-        <a href="{{ airline.get_absolute_url }}" class="btn btn-light">Read</a>
+        <a href="{{ airline.get_absolute_url }}"
+           class="btn btn-light"
+           style="font-size: 18px;
+                  background: #f6d2d6;
+                  font-family: sans-serif;
+                  letter-spacing:0.5px;">Read</a>
     </div>
 </div>

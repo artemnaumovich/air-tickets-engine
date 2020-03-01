@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 def airlines_list(request):
     airlines = Airline.objects.all()
-    return render(request, 'airtickets/index.html', context={'airlines': airlines})
+    return render(request, 'airtickets/airlines_list.html', context={'airlines': airlines})
 
 class AirlineDetail(ObjectDetailMixin, View):
     model = Airline

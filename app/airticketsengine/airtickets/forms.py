@@ -91,6 +91,15 @@ class RouteForm(forms.ModelForm):
             'slug': forms.TextInput(attrs={'class': 'form-control'})
         }
 
+    def clean_airportTo(self):
+        new_airportFrom = self.cleaned_data['airportFrom']
+        new_airportTo = self.cleaned_data['airportTo']
+
+        if new_airportFrom == new_airportTo:
+            raise ValidationError('AirportFrom and AirportTo must be different')
+        elif new_airportFrom.city == new_airportTo.city:
+            raise ValidationError('AirportFrom.City and AirportTo.City must be different')
+        return new_airportTo
 
 class FlightForm(forms.ModelForm):
 
@@ -107,6 +116,15 @@ class FlightForm(forms.ModelForm):
             'duration': forms.TextInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'})
         }
+
+    def clean_price(self):
+        new_price = self.cleaned_data['price']
+
+        if new_price <= 0:
+            raise ValidationError('Price must be greater then 0')
+
+        return new_price
+
 
 class AirplaneForm(forms.ModelForm):
 

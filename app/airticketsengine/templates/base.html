@@ -16,46 +16,110 @@
             Air Tickets Engine
         {% endblock %}
     </title>
+    <style>
+
+        .admin-panel{
+            background: #142b47;
+            border: 1px solid #999;
+            border-radius: 2px;
+            position: fixed;
+            right: 50px;
+            bottom: 30px;
+            opacity: 0.3;
+            padding: 15px;
+        }
+
+        .admin-panel:hover{
+            opacity: 1;
+        }
+
+        .admin-panel a {
+            display: block;
+            margin: 5px 0;
+        }
+
+        a.edit, a.delete {
+            display: none;
+        }
+
+        .menu{
+            width: 100%;
+            background: #274b69;
+            overflow: auto;
+        }
+
+        .menu ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            line-height: 60px;
+        }
+        .menu li{
+            float: left;
+        }
+        .menu ul li a{
+            background: #274b69;
+            text-decoration: none;
+            width: 130px;
+            display: block;
+            text-align: center;
+            color: #f2f2f2;
+            font-size: 18px;
+            font-family: sans-serif;
+            letter-spacing:0.5px;
+        }
+        .menu li a:hover{
+            color: #fefafa;
+            font-size: 20px;
+            background: #85a1c1;
+        }
+        body{
+            background: url(/static/images/bg.jpg) no-repeat;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-size: 100%;
+        }
+
+        .container{
+            font-family: sans-serif;
+        }
+
+
+    </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'airlines_list_url' %}">Airlines</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'airports_list_url' %}">Airports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'flights_list_url' %}">Flights</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'routes_list_url' %}">Routes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'airplanes_list_url' %}">Airplanes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'countries_list_url' %}">Countries</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'cities_list_url' %}">Cities</a>
-                </li>
 
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
+
+    <nav class="menu">
+
+
+        <ul>
+            <li>
+                <a href="{% url 'airlines_list_url' %}">Airlines</a>
+            </li>
+            <li>
+                <a href="{% url 'airports_list_url' %}">Airports</a>
+            </li>
+            <li>
+                <a href="{% url 'flights_list_url' %}">Flights</a>
+            </li>
+            <li>
+                <a href="{% url 'routes_list_url' %}">Routes</a>
+            </li>
+            <li>
+                <a href="{% url 'airplanes_list_url' %}">Airplanes</a>
+            </li>
+            <li>
+                <a href="{% url 'countries_list_url' %}">Countries</a>
+            </li>
+            <li>
+                <a href="{% url 'cities_list_url' %}">Cities</a>
+            </li>
+
+        </ul>
+
     </nav>
 
 
@@ -69,6 +133,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     {% if request.user.is_authenticated and request.user.is_staff %}

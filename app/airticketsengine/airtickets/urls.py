@@ -4,7 +4,8 @@ from .views import *
 
 
 urlpatterns = [
-    path('', airlines_list, name='airlines_list_url'),
+
+    path('airlines/', airlines_list, name='airlines_list_url'),
     path('airline/create/', AirlineCreate.as_view(), name='airline_create_url'),
     path('airline/<str:slug>/', AirlineDetail.as_view(), name='airline_detail_url'),
     path('airline/<str:slug>/update/', AirlineUpdate.as_view(), name='airline_update_url'),

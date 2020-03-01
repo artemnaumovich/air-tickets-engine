@@ -1,8 +1,13 @@
-<div class="card mb-4">
+<div class="card mb-4"
+     style="background: #142b47;
+            font-size: 18px;
+            color: #f2f2f2;
+            font-family: sans-serif;
+            letter-spacing:0.5px;">
     <div class="card-header">
-        <h5> {{ flight.name }} </h5>
+        <p style="font-size: 25px;"> {{ flight.name }} </p>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="background: #fefafa;">
         <div class="text-muted">
             From: <a href="{{ flight.route.airportFrom.city.get_absolute_url }}">{{ flight.route.airportFrom.city.name }}</a>
         </div>
@@ -17,6 +22,11 @@
         </div>
 
 
-        <a href="{{ flight.get_absolute_url }}" class="btn btn-light">Read</a>
+        <a href="{{ flight.get_absolute_url }}"
+           class="btn btn-light"
+           style="font-size: 18px;
+                  background: #f6d2d6;
+                  font-family: sans-serif;
+                  letter-spacing:0.5px;">Read</a>
     </div>
 </div>
