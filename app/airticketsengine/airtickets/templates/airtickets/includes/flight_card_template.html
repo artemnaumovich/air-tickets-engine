@@ -3,11 +3,16 @@
             font-size: 18px;
             color: #f2f2f2;
             font-family: sans-serif;
-            letter-spacing:0.5px;">
+            letter-spacing:0.5px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;">
     <div class="card-header">
         <p style="font-size: 25px;"> {{ flight.name }} </p>
     </div>
-    <div class="card-body" style="background: #fefafa;">
+    <div class="card-body"
+         style="background: #fefafa;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;">
         <div class="text-muted">
             From: <a href="{{ flight.route.airportFrom.city.get_absolute_url }}">{{ flight.route.airportFrom.city.name }}</a>
         </div>
