@@ -1,0 +1,10 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    {{ seat.name }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">Seat: {{ seat.name }}</h1>
+    <p>Airplane: {{ seat.airplane.name }}</p>
+{% endblock %}

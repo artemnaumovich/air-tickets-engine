@@ -77,7 +77,7 @@
             letter-spacing:0.5px;
         }
         .menu ul li.logo{
-            width: 308px;
+            width: 190px;
         }
 
         .menu ul li.logo a{
@@ -117,7 +117,7 @@
 
         <ul>
             <li class="logo">
-                <a href="#">AIE</a>
+                <a href="{% url 'main_page_url' %}">AIE</a>
             </li>
 
             <li class="li_link">
@@ -134,6 +134,12 @@
             </li>
             <li class="li_link">
                 <a href="{% url 'airplanes_list_url' %}">Airplanes</a>
+            </li>
+            <li class="li_link">
+                <a href="{% url 'seats_list_url' %}">Seats</a>
+            </li>
+            <li class="li_link">
+                <a href="{% url 'tickets_list_url' %}">Tickets</a>
             </li>
             <li class="li_link">
                 <a href="{% url 'countries_list_url' %}">Countries</a>

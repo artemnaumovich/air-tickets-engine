@@ -5,6 +5,8 @@ from .views import *
 
 urlpatterns = [
 
+    path('', main_page, name='main_page_url'),
+
     path('airlines/', airlines_list, name='airlines_list_url'),
     path('airline/create/', AirlineCreate.as_view(), name='airline_create_url'),
     path('airline/<str:slug>/', AirlineDetail.as_view(), name='airline_detail_url'),
@@ -46,6 +48,19 @@ urlpatterns = [
     path('city/<str:slug>/', CityDetail.as_view(), name='city_detail_url'),
     path('city/<str:slug>/update/', CityUpdate.as_view(), name='city_update_url'),
     path('city/<str:slug>/delete/', CityDelete.as_view(), name='city_delete_url'),
+
+    path('seats/', seats_list, name='seats_list_url'),
+    path('seat/create/', SeatCreate.as_view(), name='seat_create_url'),
+    path('seat/<str:slug>/', SeatDetail.as_view(), name='seat_detail_url'),
+    path('seat/<str:slug>/update/', SeatUpdate.as_view(), name='seat_update_url'),
+    path('seat/<str:slug>/delete/', SeatDelete.as_view(), name='seat_delete_url'),
+
+    path('tickets/', tickets_list, name='tickets_list_url'),
+    path('ticket/create/', TicketCreate.as_view(), name='ticket_create_url'),
+    path('ticket/<str:slug>/', TicketDetail.as_view(), name='ticket_detail_url'),
+    path('ticket/<str:slug>/update/', TicketUpdate.as_view(), name='ticket_update_url'),
+    path('ticket/<str:slug>/delete/', TicketDelete.as_view(), name='ticket_delete_url'),
+
 
     path('users/', users_list, name='users_list_url'),
     path('register/', RegisterUserView.as_view(), name='register_url'),

@@ -11,6 +11,11 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
+
+
+def main_page(request):
+    return render(request, 'airtickets/main_page.html')
+
 def airlines_list(request):
     airlines = Airline.objects.all()
     return render(request, 'airtickets/airlines_list.html', context={'airlines': airlines})
@@ -190,31 +195,63 @@ class CityDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     raise_exception = True
 
 
+def seats_list(request):
+    seats = Seat.objects.all()
+    return render(request, 'airtickets/seats_list.html', context={'seats': seats})
+
+class SeatDetail(ObjectDetailMixin, View):
+    model = Seat
+    template = 'airtickets/seat_detail.html'
+
+class SeatCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = Seat
+    model_form = SeatForm
+    raise_exception = True
+
+class SeatUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    model = Seat
+    model_form = SeatForm
+    raise_exception = True
+
+class SeatDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Seat
+    redirect_url = 'seats_list_url'
+    raise_exception = True
+
+
+
+def tickets_list(request):
+    tickets = Ticket.objects.all()
+    return render(request, 'airtickets/tickets_list.html', context={'tickets': tickets})
+
+class TicketDetail(ObjectDetailMixin, View):
+    model = Ticket
+    template = 'airtickets/ticket_detail.html'
+
+class TicketCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = Ticket
+    model_form = TicketForm
+    raise_exception = True
+
+class TicketUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    model = Ticket
+    model_form = TicketForm
+    raise_exception = True
+
+class TicketDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = Ticket
+    redirect_url = 'tickets_list_url'
+    raise_exception = True
+
+
+
+
+
+
 
 def users_list(request):
     users = User.objects.all()
     return render(request, 'airtickets/users_list.html', context={'users': users})
-
-'''
-class UserDetail(ObjectDetailMixin, View):
-    model = City
-    template = 'airtickets/city_detail.html'
-
-class UserCreate(LoginRequiredMixin, ObjectCreateMixin, View):
-    model = City
-    model_form = CityForm
-    raise_exception = True
-
-class UserUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
-    model = City
-    model_form = CityForm
-    raise_exception = True
-
-class CityDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
-    model = City
-    redirect_url = 'cities_list_url'
-    raise_exception = True
-'''
 
 class RegisterUserView(CreateView):
     model = User

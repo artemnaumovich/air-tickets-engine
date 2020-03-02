@@ -205,19 +205,57 @@ class Flight(models.Model):
 
 
 class Seat(models.Model):
-    number = models.CharField(max_length=5, db_index=True)
+    name = models.CharField(max_length=5, db_index=True)
     airplane = models.ForeignKey(Airplane, on_delete=models.CASCADE, related_name='seats')
     slug = models.SlugField(max_length=50, unique=True, blank=True)
 
+    def get_absolute_url(self):
+        return reverse('seat_detail_url', kwargs={'slug': self.slug})
+
+    def get_create_url(self):
+        return reverse('seat_create_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('seat_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('seat_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return self.number
+        return self.name
 
 
 class Ticket(models.Model):
+    name = models.TextField(max_length=100, blank=True)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='tickets')
     person = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tickets')
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE, related_name='tickets')
     slug = models.SlugField(max_length=100, unique=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse('ticket_detail_url', kwargs={'slug': self.slug})
+
+    def get_create_url(self):
+        return reverse('ticket_create_url', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('ticket_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('ticket_delete_url', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.slug = gen_slug(str(self.person.id) + '-' + str(self.seat.name))
+        super().save(*args, **kwargs)
+        self.name = str(self.id)
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return '{}:{}'.format(self.person, self.seat)

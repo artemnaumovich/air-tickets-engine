@@ -142,6 +142,42 @@ class AirplaneForm(forms.ModelForm):
         }
 
 
+class SeatForm(forms.ModelForm):
+
+    class Meta:
+        model = Seat
+
+        fields = ['name', 'airplane', 'slug']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'airplane': forms.Select(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class TicketForm(forms.ModelForm):
+
+    class Meta:
+        model = Ticket
+
+        fields = ['flight', 'person', 'seat']
+
+        widgets = {
+            'flight': forms.Select(attrs={'class': 'form-control'}),
+            'person': forms.Select(attrs={'class': 'form-control'}),
+            'seat': forms.Select(attrs={'class': 'form-control'})
+        }
+
+
+
+
+
+
+
+
+
+
 class RegisterUserForm(forms.ModelForm):
 
     class Meta:
