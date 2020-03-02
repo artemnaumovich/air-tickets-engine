@@ -6,8 +6,10 @@ from .utils import *
 from .models import *
 from .forms import *
 
+from django.views.generic import CreateView, DetailView
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.utils import timezone
 
 def airlines_list(request):
     airlines = Airline.objects.all()
@@ -186,3 +188,49 @@ class CityDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     model = City
     redirect_url = 'cities_list_url'
     raise_exception = True
+
+
+
+def users_list(request):
+    users = User.objects.all()
+    return render(request, 'airtickets/users_list.html', context={'users': users})
+
+'''
+class UserDetail(ObjectDetailMixin, View):
+    model = City
+    template = 'airtickets/city_detail.html'
+
+class UserCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    model = City
+    model_form = CityForm
+    raise_exception = True
+
+class UserUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    model = City
+    model_form = CityForm
+    raise_exception = True
+
+class CityDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    model = City
+    redirect_url = 'cities_list_url'
+    raise_exception = True
+'''
+
+class RegisterUserView(CreateView):
+    model = User
+    template_name = 'airtickets/register_form.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('airlines_list_url')
+    success_msg = 'User was created successful'
+
+class DetailUserView(DetailView):
+
+    model = User
+    template_name = 'airtickets/user_detail.html'
+
+    def get(self, request, id):
+        user = get_object_or_404(self.model, id=id)
+        return render(request, self.template_name, context={'user': user})
+
+
+

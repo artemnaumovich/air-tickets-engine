@@ -1,0 +1,12 @@
+{% extends 'airtickets/base_airtickets.html' %}
+
+{% block title %}
+    Users title - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Users:</h1>
+    {% for user in users %}
+        {% include 'airtickets/includes/user_card_template.html' %}
+    {% endfor %}
+{% endblock %}

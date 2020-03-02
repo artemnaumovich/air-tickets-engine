@@ -130,6 +130,7 @@ class AirplaneForm(forms.ModelForm):
 
     class Meta:
         model = Airplane
+
         fields = ['name', 'airline', 'capacity', 'numberRows', 'slug']
 
         widgets = {
@@ -139,3 +140,28 @@ class AirplaneForm(forms.ModelForm):
             'numberRows': forms.NumberInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'})
         }
+
+
+class RegisterUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+
+        fields = ['username', 'password', 'first_name', 'last_name', 'email', 'is_staff', 'is_superuser']
+
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'is_staff': forms.NullBooleanSelect(attrs={'class': 'form-control'}),
+            'is_superuser': forms.NullBooleanSelect(attrs={'class': 'form-control'})
+        }
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+        return user

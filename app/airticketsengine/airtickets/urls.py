@@ -45,6 +45,10 @@ urlpatterns = [
     path('city/create/', CityCreate.as_view(), name='city_create_url'),
     path('city/<str:slug>/', CityDetail.as_view(), name='city_detail_url'),
     path('city/<str:slug>/update/', CityUpdate.as_view(), name='city_update_url'),
-    path('city/<str:slug>/delete/', CityDelete.as_view(), name='city_delete_url')
+    path('city/<str:slug>/delete/', CityDelete.as_view(), name='city_delete_url'),
+
+    path('users/', users_list, name='users_list_url'),
+    path('register/', RegisterUserView.as_view(), name='register_url'),
+    path('user/<int:id>/', DetailUserView.as_view(), name='detail_user_url'),
 
 ]
