@@ -1,4 +1,4 @@
 from django.shortcuts import redirect
 
-def redirect_airlines(request):
-    return redirect('airlines_list_url', permanent=True)
+def redirect_main_page(request):
+    return redirect('main_page_url', permanent=True)

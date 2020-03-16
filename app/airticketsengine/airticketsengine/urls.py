@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
-from .views import redirect_airlines
+from .views import redirect_main_page
 
 urlpatterns = [
-    path('', redirect_airlines),
+    path('', redirect_main_page),
     path('admin/', admin.site.urls),
     path('airtickets/', include('airtickets.urls'))
 ]

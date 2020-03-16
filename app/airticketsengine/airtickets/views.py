@@ -10,11 +10,15 @@ from django.views.generic import CreateView, DetailView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+from django.db.models import Count
 
 
 
 def main_page(request):
-    return render(request, 'airtickets/main_page.html')
+    res = Ticket.objects.values('flight__route__airportTo__city__country__name').annotate(total=Count('id'))
+    data = [ [row['flight__route__airportTo__city__country__name'], row['total']] for row in res ]
+    # dt = [['a', 34], ['b', 62], ['c', 10]]
+    return render(request, 'airtickets/main_page.html', context={'values': data})
 
 def airlines_list(request):
     airlines = Airline.objects.all()

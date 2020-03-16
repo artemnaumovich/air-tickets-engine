@@ -156,7 +156,12 @@ class SeatForm(forms.ModelForm):
         }
 
 
-class TicketForm(forms.ModelForm):
+class TicketForm(forms.ModelForm, forms.Form):
+
+    seat = forms.CharField()
+
+    seat.widget.attrs.update({'class': 'form-control'})
+
 
     class Meta:
         model = Ticket
@@ -166,14 +171,25 @@ class TicketForm(forms.ModelForm):
         widgets = {
             'flight': forms.Select(attrs={'class': 'form-control'}),
             'person': forms.Select(attrs={'class': 'form-control'}),
-            'seat': forms.Select(attrs={'class': 'form-control'})
+            #'seat': forms.TextInput(attrs={'class': 'form-control'})
         }
 
+    def clean_seat(self):
+
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(self.cleaned_data['flight'].airplane.seats.filter(name=self.cleaned_data['seat']).count())
+        print("\n\n\n\n\n\n\n\n\n\n")
 
 
+        if self.cleaned_data['flight'].airplane.seats.filter(name=self.cleaned_data['seat']).count()==0:
+            raise ValidationError("Airplane does not have seat with this code")
 
+        new_seat=self.cleaned_data['flight'].airplane.seats.get(name=self.cleaned_data['seat'])
 
+        if Ticket.objects.filter(flight=self.cleaned_data['flight'], seat=new_seat).count()==1:
+            raise ValidationError("This seat is already taken")
 
+        return new_seat
 
 
 

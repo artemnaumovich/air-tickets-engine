@@ -251,7 +251,7 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = gen_slug(str(self.person.id) + '-' + str(self.seat.name))
+            self.slug = gen_slug(str(self.person.id) + '-' + str(self.flight.name))
         super().save(*args, **kwargs)
         self.name = str(self.id)
         super().save(*args, **kwargs)
