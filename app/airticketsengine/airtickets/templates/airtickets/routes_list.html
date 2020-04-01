@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+	<a href="{% url 'export_routes_url' %}" class="btn btn-primary" style="background: #274b69"> Export </a>
+    <a href="{% url 'import_routes_url' %}" class="btn btn-primary" style="background: #274b69"> Import </a>
+
     <h1 class="mb-5">Routes:</h1>
     {% for route in routes %}
         {% include 'airtickets/includes/route_card_template.html' %}

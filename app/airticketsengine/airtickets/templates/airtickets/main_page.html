@@ -2,16 +2,22 @@
 {% load googlecharts %}
 {# container #}
 {% block content %}
-<div id="out"></div>
+
+
+<h1>The most popular countries:</h1>
+<div id="out1"> </div>
+<br>
+<h1>The most popular airlines:</h1>
+<div id="out2"></div>
+
 {% googlecharts %}
-	{# named data and options can be reused #}
-	{% data values "out_data" %}
+	
+	{% data values1 "out_data1" %}
 		{% col "string" "Name" %}"{{ val }}"{% endcol %}
 		{% col "number" "Value" %}{{ val }}{% endcol %}
 	{% enddata %}
-	{# you can also use global javascript variables here, #}
-	{# and call functions #}
-	{% options "out_options" %}
+	
+	{% options "out_options1" %}
 		kind: "PieChart",
 		options: {
 			width: 400,
@@ -21,8 +27,31 @@
 			chartArea: {width: '90%', height: '90%'},
 		}
 	{% endoptions %}
-	{# chart is assembled from container, data and options #}
-	{% graph "out" "out_data" "out_options" %}
+	{% graph "out1" "out_data1" "out_options1" %}
+
+
+
+
+	{% data values2 "out_data2" %}
+		{% col "string" "Name" %}"{{ val }}"{% endcol %}
+		{% col "number" "Value" %}{{ val }}{% endcol %}
+	{% enddata %}
+	
+	{% options "out_options2" %}
+		kind: "ColumnChart",
+		options: {
+			width: 400,
+			height: 320,
+			backgroundColor: '#f1f8e9',
+			is3D: true,
+			chartArea: {width: '90%', height: '90%'},
+		}
+	{% endoptions %}
+	{% graph "out2" "out_data2" "out_options2" %}
+
+
 {% endgooglecharts %}
+
+
 
 {% endblock %}

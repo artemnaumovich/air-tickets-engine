@@ -62,8 +62,33 @@ urlpatterns = [
     path('ticket/<str:slug>/delete/', TicketDelete.as_view(), name='ticket_delete_url'),
 
 
+
     path('users/', users_list, name='users_list_url'),
     path('register/', RegisterUserView.as_view(), name='register_url'),
     path('user/<int:id>/', DetailUserView.as_view(), name='detail_user_url'),
+ 
+    path('countries/export', export_countries, name='export_countries_url'),
+    path('cities/export', export_cities, name='export_cities_url'),
+    path('airports/export', export_airports, name='export_airports_url'),
+    path('airlines/export', export_airlines, name='export_airlines_url'),
+    path('flights/export', export_flights, name='export_flights_url'),
+    path('routes/export', export_routes, name='export_routes_url'),
+    path('airplanes/export', export_airplanes, name='export_airplanes_url'),
+    path('seats/export', export_seats, name='export_seats_url'),
+    path('tickets/export', export_tickets, name='export_tickets_url'),
+
+    path('countries/import', import_countries, name='import_countries_url'),
+    path('cities/import', import_cities, name='import_cities_url'),
+    path('airports/import', import_airports, name='import_airports_url'),
+    path('airlines/import', import_airlines, name='import_airlines_url'),
+    path('flights/import', import_flights, name='import_flights_url'),
+    path('routes/import', import_routes, name='import_routes_url'),
+    path('airplanes/import', import_airplanes, name='import_airplanes_url'),
+    path('seats/import', import_seats, name='import_seats_url'),
+    path('tickets/import', import_tickets, name='import_tickets_url'),
+
+    path('signup/', signup, name='signup_url'),
+    path('logout/', logout_view, name='logout_url'),
+    path('login/', login_view, name='login_url')
 
 ]

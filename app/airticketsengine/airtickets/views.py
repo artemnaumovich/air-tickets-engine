@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import View
 
 
@@ -12,13 +11,252 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.db.models import Count
 
+from django.http import HttpResponse
+from .admin import *
+from tablib import Dataset
+
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
+
+
+def import_countries(request):
+    if request.method == 'POST':
+        countries_resource = CountryResource()
+        dataset = Dataset()
+        new_countries = request.FILES['myfile']
+
+        imported_data = dataset.load(new_countries.read())
+        result = countries_resource.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            countries_resource.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_cities(request):
+    if request.method == 'POST':
+        cities_resource = CityResource()
+        dataset = Dataset()
+        new_cities = request.FILES['myfile']
+
+        imported_data = dataset.load(new_cities.read())
+        result = cities_resource.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            cities_resource.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+
+def import_airports(request):
+    if request.method == 'POST':
+        res = AirportResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_airlines(request):
+    if request.method == 'POST':
+        res = AirlineResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_flights(request):
+    if request.method == 'POST':
+        res = FlightResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_routes(request):
+    if request.method == 'POST':
+        res = RouteResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_airplanes(request):
+    if request.method == 'POST':
+        res = AirplaneResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_seats(request):
+    if request.method == 'POST':
+        res = SeatResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+def import_tickets(request):
+    if request.method == 'POST':
+        res = TicketResource()
+        dataset = Dataset()
+        new_data = request.FILES['myfile']
+
+        imported_data = dataset.load(new_data.read())
+        result = res.import_data(dataset, dry_run=True)
+
+        if not result.has_errors() and not result.has_validation_errors():
+            res.import_data(dataset, dry_run=False)
+            return render(request, 'airtickets/import.html', context={'msg': 'Import is success'})
+        else:
+            return render(request, 'airtickets/import.html', context={'msg': 'Incorrect data, try again'})
+
+    return render(request, 'airtickets/import.html', context={'msg': ''})
+
+
+
+
+
+def export_countries(request):
+    res = CountryResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="countries.xls"'
+    return response
+
+def export_cities(request):
+    res = CityResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="cities.xls"'
+    return response
+
+def export_airports(request):
+    res = AirportResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="airports.xls"'
+    return response
+
+def export_airlines(request):
+    res = AirlineResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="airlines.xls"'
+    return response
+
+def export_flights(request):
+    res = FlightResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="flights.xls"'
+    return response
+
+def export_routes(request):
+    res = RouteResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="routes.xls"'
+    return response
+
+def export_airplanes(request):
+    res = AirplaneResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="airplanes.xls"'
+    return response
+
+def export_seats(request):
+    res = SeatResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="seats.xls"'
+    return response
+
+def export_tickets(request):
+    res = TicketResource()
+    dataset = res.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="tickets.xls"'
+    return response
+
+
+
 
 
 def main_page(request):
     res = Ticket.objects.values('flight__route__airportTo__city__country__name').annotate(total=Count('id'))
     data = [ [row['flight__route__airportTo__city__country__name'], row['total']] for row in res ]
-    # dt = [['a', 34], ['b', 62], ['c', 10]]
-    return render(request, 'airtickets/main_page.html', context={'values': data})
+    
+    res2 = Ticket.objects.values('flight__airplane__airline__name').annotate(total=Count('id'))
+    data2 = [ [row['flight__airplane__airline__name'], row['total']] for row in res2 ]
+    
+    return render(request, 'airtickets/main_page.html', context={'values1': data, 'values2': data2})
+
+
 
 def airlines_list(request):
     airlines = Airline.objects.all()
@@ -271,7 +509,49 @@ class DetailUserView(DetailView):
 
     def get(self, request, id):
         user = get_object_or_404(self.model, id=id)
-        return render(request, self.template_name, context={'user': user})
+        return render(request, self.template_name, context={'user': user, 'admin_object': user, 'detail': True})
 
 
 
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect(main_page)
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect(main_page)
+    else:
+        form = UserCreationForm()
+    return render(request, 'airtickets/signup.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(main_page)
+
+def login_view(request):
+    if request.user.is_authenticated:
+        return redirect(main_page)
+        
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect(main_page)
+                else:
+                    return render(request, 'airtickets/login.html', context={'form': form, 'mm': 'Disabled account'})
+            else:
+                return render(request, 'airtickets/login.html', context={'form': form, 'mm': 'Invalid login'})
+    else:
+        form = LoginForm()
+    return render(request, 'airtickets/login.html', {'form': form})

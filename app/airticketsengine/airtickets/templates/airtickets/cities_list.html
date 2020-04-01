@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+    <a href="{% url 'export_cities_url' %}" class="btn btn-primary" style="background: #274b69"> Export </a>
+    <a href="{% url 'import_cities_url' %}" class="btn btn-primary" style="background: #274b69"> Import </a>
+
     <h1 class="mb-5">Cities:</h1>
     {% for city in cities %}
         {% include 'airtickets/includes/city_card_template.html' %}

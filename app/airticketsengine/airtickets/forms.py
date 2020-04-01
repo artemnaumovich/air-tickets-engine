@@ -141,6 +141,23 @@ class AirplaneForm(forms.ModelForm):
             'slug': forms.TextInput(attrs={'class': 'form-control'})
         }
 
+    def clean_capacity(self):
+        new_capacity = self.cleaned_data['capacity']
+
+        if new_capacity <= 0:
+            raise ValidationError('Capacity must be greater then 0')
+
+        return new_capacity
+
+    def clean_numberRows(self):
+        new_numberRows = self.cleaned_data['numberRows']
+
+        if new_numberRows <= 0:
+            raise ValidationError('Number rows must be greater then 0')
+
+        return new_numberRows
+
+
 
 class SeatForm(forms.ModelForm):
 
@@ -175,10 +192,6 @@ class TicketForm(forms.ModelForm, forms.Form):
         }
 
     def clean_seat(self):
-
-        print("\n\n\n\n\n\n\n\n\n\n")
-        print(self.cleaned_data['flight'].airplane.seats.filter(name=self.cleaned_data['seat']).count())
-        print("\n\n\n\n\n\n\n\n\n\n")
 
 
         if self.cleaned_data['flight'].airplane.seats.filter(name=self.cleaned_data['seat']).count()==0:
@@ -217,3 +230,8 @@ class RegisterUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
